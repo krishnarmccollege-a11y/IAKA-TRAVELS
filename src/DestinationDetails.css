@@ -1,0 +1,142 @@
+.destination-detail {
+  min-height: 100vh;
+  background: #f6f8fb;
+  color: #182033;
+}
+
+.destination-detail > header {
+  background: #071a36;
+  padding: 18px 6%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.destination-detail > header button {
+  border: 1px solid #e3b43c;
+  background: transparent;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.detail-hero {
+  background: linear-gradient(135deg,#082c57,#125d8d);
+  color: white;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.big-place-icon {
+  font-size: 80px;
+}
+
+.detail-hero h1 {
+  color: white;
+  font-size: 45px;
+}
+
+.detail-hero p {
+  max-width: 700px;
+  margin: auto;
+  line-height: 1.7;
+}
+
+.detail-hero button,
+.book-section button {
+  margin-top: 20px;
+  background: #e2b137;
+  border: none;
+  padding: 13px 25px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.road-map {
+  background: white;
+  margin: 30px 7%;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,.07);
+}
+
+.route-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.route-point {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.route-point span {
+  font-size: 24px;
+}
+
+.route-point strong {
+  background: #fff5d5;
+  padding: 10px 15px;
+  border-radius: 20px;
+}
+
+.detail-grid {
+  padding: 10px 7% 50px;
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 20px;
+}
+
+.info-box {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,.06);
+}
+
+.info-box h2 {
+  color: #123a63;
+}
+
+.info-box li {
+  list-style: none;
+  margin: 12px 0;
+}
+
+.book-section {
+  text-align: center;
+  padding: 30px;
+  background: #071a36;
+  color: white;
+}
+
+.book-section h2 {
+  color: white;
+}
+
+.destination-detail footer {
+  text-align: center;
+  background: #041124;
+  color: white;
+  padding: 25px;
+}
+
+.not-found {
+  text-align: center;
+  padding: 100px;
+}
+
+@media (max-width: 700px) {
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .route-line {
+    flex-direction: column;
+  }
+}
