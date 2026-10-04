@@ -1,98 +1,100 @@
 import { useNavigate } from "react-router-dom";
-import "./Hotels.css";
+import "./Home.css";
 
-const hotels = [
-  {
-    name: "Taj Hotels",
-    location: "Multiple Indian Destinations",
-    type: "Premium",
-    icon: "🏨"
-  },
-  {
-    name: "ITC Hotels",
-    location: "Major Indian Cities",
-    type: "Luxury",
-    icon: "🏨"
-  },
-  {
-    name: "AKA Budget Stays",
-    location: "Travel Destinations",
-    type: "Budget",
-    icon: "🛏️"
-  },
-  {
-    name: "AKA Family Resorts",
-    location: "Hill Stations & Beaches",
-    type: "Family",
-    icon: "🏝️"
-  }
-];
-
-function Hotels() {
+function Home() {
   const navigate = useNavigate();
 
+  const destinations = [
+    {
+      name: "Mahabaleshwar",
+      state: "Maharashtra",
+      image: "/images/mahabaleshwar.jpg",
+      id: "mahabaleshwar",
+    },
+    {
+      name: "Araku Valley",
+      state: "Andhra Pradesh",
+      image: "/images/araku-valley.jpg",
+      id: "araku-valley",
+    },
+    {
+      name: "Varanasi",
+      state: "Uttar Pradesh",
+      image: "/images/varanasi.jpg",
+      id: "varanasi",
+    },
+    {
+      name: "Ooty",
+      state: "Tamil Nadu",
+      image: "/images/ooty.jpg",
+      id: "ooty",
+    },
+    {
+      name: "Jaipur",
+      state: "Rajasthan",
+      image: "/images/jaipur.jpg",
+      id: "jaipur",
+    },
+  ];
+
   return (
-    <div className="hotels-page">
+    <div className="home-page">
 
-      <header>
+      {/* KEEP YOUR EXISTING HEADER HERE */}
 
-        <button onClick={() => navigate("/home")}>
-          ← AKA Travels
-        </button>
+      <main className="home-content">
 
-        <h1>🏨 Hotels</h1>
+        <div className="popular-title">
+          <span>POPULAR DESTINATIONS</span>
+          <h1>Explore Top Destinations</h1>
+        </div>
 
-        <button onClick={() => navigate("/booking")}>
-          Book Trip
-        </button>
+        <div className="destination-cards">
 
-      </header>
+          {destinations.map((destination) => (
+            <div className="destination-card" key={destination.id}>
 
-      <section className="hotel-intro">
+              {/* REAL DESTINATION IMAGE */}
+              <div className="destination-image-box">
+                <img
+                  src={destination.image}
+                  alt={destination.name}
+                  className="destination-real-image"
+                />
+              </div>
 
-        <p>STAY COMFORTABLY</p>
+              <div className="destination-card-content">
 
-        <h2>
-          Find Your Travel Stay
-        </h2>
+                <h2>{destination.name}</h2>
 
-      </section>
+                <p>
+                  <span className="location-icon">📍</span>
+                  {destination.state}
+                </p>
 
-      <div className="hotel-grid">
+                <button
+                  className="explore-button"
+                  onClick={() =>
+                    navigate(`/destination/${destination.id}`)
+                  }
+                >
+                  Explore →
+                </button>
 
-        {hotels.map((hotel) => (
-
-          <div
-            className="hotel-card"
-            key={hotel.name}
-          >
-
-            <div>
-              {hotel.icon}
+              </div>
             </div>
+          ))}
 
-            <h2>{hotel.name}</h2>
+        </div>
 
-            <p>📍 {hotel.location}</p>
+        {/* KEEP YOUR EXISTING SPECIAL TRAVEL PACKAGES SECTION HERE */}
 
-            <strong>
-              {hotel.type}
-            </strong>
+      </main>
 
-            <button
-              onClick={() => navigate("/booking")}
-            >
-              Book Stay
-            </button>
-
-          </div>
-
-        ))}
-
-      </div>
+      {/* KEEP YOUR EXISTING CHATBOT HERE */}
 
     </div>
   );
 }
 
-export default Hotels;
+export default Home;

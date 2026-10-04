@@ -1,130 +1,169 @@
 import { useNavigate } from "react-router-dom";
-import { destinationData } from "./destinationData";
 import "./Destinations.css";
+import { destinationData } from "./destinationData";
 
 function Destinations() {
   const navigate = useNavigate();
 
-  const openMap = (route: string) => {
-    const destination = route.split("→").pop()?.trim() || "";
-
-    const url =
-      `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-        destination
-      )}`;
-
-    window.open(url, "_blank");
-  };
-
   return (
     <div className="destinations-page">
 
-      <header className="destination-header">
+      {/* ================= HEADER ================= */}
+      <header className="destinations-header">
 
-        <button onClick={() => navigate("/home")}>
-          ← AKA Travels
+        <button
+          className="back-button"
+          onClick={() => navigate("/home")}
+        >
+          ← Back
         </button>
 
-        <h1>Explore India 🇮🇳</h1>
+        <div className="destinations-title">
+          <h1>Destinations</h1>
+          <p>EXPLORE INDIA</p>
+        </div>
 
-        <button onClick={() => navigate("/booking")}>
+        <button
+          className="booking-button"
+          onClick={() => navigate("/booking")}
+        >
           🎫 Booking
         </button>
 
       </header>
 
-      <div className="destination-intro">
 
-        <p>EXPLORE • EXPERIENCE • REMEMBER</p>
+      {/* ================= INTRO ================= */}
+      <section className="destination-intro">
 
-        <h2>
-          Famous Places Across India
-        </h2>
+        <h2>Explore Beautiful India</h2>
 
-        <span>
-          Select a destination to discover attractions,
-          hotels, restaurants, parks and travel routes.
-        </span>
+        <p>
+          Discover famous destinations, historic places,
+          beautiful landscapes and cultural experiences.
+        </p>
 
-      </div>
+      </section>
 
-      <main>
 
-        {destinationData.map((state) => (
+      {/* ================= STATES ================= */}
+      {destinationData.map((state) => (
 
-          <section
-            className="state-section"
-            key={state.state}
-          >
+        <section
+          className="state-section"
+          key={state.state}
+        >
 
-            <div className="state-title">
+          {/* STATE IMAGE */}
+          <div className="state-banner">
 
-              <h2>
-                {state.emoji} {state.state}
-              </h2>
+            <img
+              src={state.image}
+              alt={state.state}
+              className="state-banner-image"
+            />
+
+            <div className="state-overlay">
+
+              <h2>{state.state}</h2>
 
               <span>
-                {state.places.length} destinations
+                {state.places.length} Destinations
               </span>
 
             </div>
 
-            <div className="place-grid">
+          </div>
 
-              {state.places.map((place) => (
 
-                <article
-                  className="place-card"
-                  key={place.id}
-                >
+          {/* DESTINATION CARDS */}
+          <div className="destination-grid">
 
-                  <div className="place-icon">
-                    {place.emoji}
-                  </div>
+            {state.places.map((destination) => (
+
+              <div
+                className="destination-card"
+                key={destination.id}
+                onClick={() =>
+                  navigate(
+                    `/destination/${destination.id}`
+                  )
+                }
+              >
+
+                {/* IMAGE */}
+                <div className="destination-image-container">
+
+                  <img
+                    src={destination.image}
+                    alt={destination.name}
+                    className="destination-image"
+                    onError={(e) => {
+                      console.error(
+                        "Image not found:",
+                        e.currentTarget.src
+                      );
+                    }}
+                  />
+
+                </div>
+
+
+                {/* CONTENT */}
+                <div className="destination-card-content">
 
                   <h3>
-                    {place.name}
+                    {destination.emoji}{" "}
+                    {destination.name}
                   </h3>
 
-                  <p className="route">
-                    🛣️ {place.route}
+                  <p className="destination-route">
+                    📍 {destination.route}
                   </p>
 
-                  <p>
-                    {place.description}
+                  <p className="destination-description">
+                    {destination.description}
                   </p>
 
-                  <div className="place-actions">
+                  <button
+                    className="explore-button"
+                    onClick={(e) => {
 
-                    <button
-                      onClick={() =>
-                        openMap(place.route)
-                      }
-                    >
-                      📍 Open Map
-                    </button>
+                      e.stopPropagation();
 
-                    <button
-                      onClick={() =>
-                        navigate(`/destinations/${place.id}`)
-                      }
-                    >
-                      Explore →
-                    </button>
+                      navigate(
+                        `/destination/${destination.id}`
+                      );
 
-                  </div>
+                    }}
+                  >
+                    Explore →
+                  </button>
 
-                </article>
+                </div>
 
-              ))}
+              </div>
 
-            </div>
+            ))}
 
-          </section>
+          </div>
 
-        ))}
+        </section>
 
-      </main>
+      ))}
+
+
+      {/* ================= FOOTER ================= */}
+      <footer className="destinations-footer">
+
+        <h2>AKA Travels</h2>
+
+        <p>
+          Explore India • Discover New Places •
+          Create Beautiful Memories
+        </p>
+
+      </footer>
 
     </div>
   );

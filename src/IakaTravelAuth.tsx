@@ -1,6 +1,8 @@
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./IakaTravelAuth.css";
+
+import iakaLogo from "./assets/iaka-logo.png";
 
 function IakaTravelAuth() {
   const navigate = useNavigate();
@@ -8,11 +10,9 @@ function IakaTravelAuth() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (!email.trim() || !password.trim()) {
-      alert("Please enter Email and Password");
+  const handleLogin = () => {
+    if (email.trim() === "" || password.trim() === "") {
+      alert("Please enter your email and password.");
       return;
     }
 
@@ -20,43 +20,52 @@ function IakaTravelAuth() {
   };
 
   return (
-    <div className="auth-page">
+    <div className="auth-container">
 
       <div className="auth-card">
 
-        <div className="auth-logo">
-          🌍
+        {/* IAKA TRAVEL LOGO */}
+        <div className="auth-logo-container">
+          <img
+            src={iakaLogo}
+            alt="IAKA Travel"
+            className="auth-logo"
+          />
         </div>
 
-        <h1>AKA Travels</h1>
+        {/* BRAND */}
+        <h1>IAKA Travels</h1>
 
-        <p>Emotion is to Travel ✈️</p>
+        <p className="auth-tagline">
+          Emotion is to Travel ✈️
+        </p>
 
+        {/* LOGIN */}
         <h2>Welcome Back</h2>
 
-        <form onSubmit={handleLogin}>
+        <input
+          type="email"
+          placeholder="Email Address"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-          <input
-            type="email"
-            placeholder="Email Address"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+        <button
+          type="button"
+          className="login-button"
+          onClick={handleLogin}
+        >
+          Login to IAKA Travels
+        </button>
 
-          <button type="submit">
-            Login to AKA Travels
-          </button>
-
-        </form>
-
-        <p className="login-note">
+        <p className="auth-footer-text">
           Explore • Experience • Remember
         </p>
 

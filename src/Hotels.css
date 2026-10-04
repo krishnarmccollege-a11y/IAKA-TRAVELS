@@ -1,80 +1,138 @@
-.hotels-page {
-  min-height: 100vh;
-  background: #f5f7fa;
-}
+/* =========================================
+   POPULAR DESTINATION CARDS
+   ========================================= */
 
-.hotels-page header {
-  background: #071a36;
-  color: white;
-  padding: 18px 6%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.hotels-page header button {
-  background: transparent;
-  border: 1px solid #dcae35;
-  color: white;
-  padding: 10px 18px;
-  border-radius: 25px;
-  cursor: pointer;
-}
-
-.hotel-intro {
-  text-align: center;
-  padding: 50px;
-}
-
-.hotel-intro p {
-  color: #c18f16;
-  font-weight: bold;
-}
-
-.hotel-grid {
-  max-width: 1100px;
-  margin: auto;
-  padding: 20px;
+.destination-cards {
   display: grid;
-  grid-template-columns: repeat(4,1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 20px;
-}
-
-.hotel-card {
-  background: white;
-  padding: 25px;
-  text-align: center;
-  border-radius: 15px;
-  box-shadow: 0 5px 20px rgba(0,0,0,.07);
-}
-
-.hotel-card > div {
-  font-size: 55px;
-}
-
-.hotel-card strong {
-  display: block;
-  color: #c18f16;
-  margin: 15px;
-}
-
-.hotel-card button {
   width: 100%;
-  padding: 12px;
-  background: #dcae35;
-  border: none;
-  border-radius: 7px;
-  cursor: pointer;
 }
 
-@media(max-width:900px) {
-  .hotel-grid {
-    grid-template-columns: repeat(2,1fr);
+.destination-card {
+  background: white;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.10);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.destination-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.16);
+}
+
+
+/* =========================================
+   REAL DESTINATION IMAGE
+   ========================================= */
+
+.destination-image-box {
+  width: 100%;
+  height: 165px;
+  overflow: hidden;
+  background: #eeeeee;
+}
+
+.destination-real-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s ease;
+}
+
+.destination-card:hover .destination-real-image {
+  transform: scale(1.08);
+}
+
+
+/* =========================================
+   CARD CONTENT
+   ========================================= */
+
+.destination-card-content {
+  padding: 18px 16px 20px;
+}
+
+.destination-card-content h2 {
+  margin: 0 0 18px;
+  font-size: 20px;
+  color: #071b3a;
+  font-weight: 700;
+}
+
+.destination-card-content p {
+  margin: 0 0 15px;
+  font-size: 17px;
+  color: #17243b;
+}
+
+.location-icon {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+
+/* =========================================
+   EXPLORE BUTTON
+   ========================================= */
+
+.explore-button {
+  border: none;
+  background: transparent;
+  color: #d99a00;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+}
+
+.explore-button:hover {
+  color: #a96f00;
+}
+
+
+/* =========================================
+   RESPONSIVE DESIGN
+   ========================================= */
+
+/* Laptop / smaller desktop */
+@media (max-width: 1200px) {
+  .destination-cards {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media(max-width:500px) {
-  .hotel-grid {
+
+/* Tablet */
+@media (max-width: 800px) {
+  .destination-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .destination-image-box {
+    height: 190px;
+  }
+}
+
+
+/* Mobile */
+@media (max-width: 500px) {
+  .destination-cards {
     grid-template-columns: 1fr;
+  }
+
+  .destination-image-box {
+    height: 220px;
+  }
+
+  .destination-card-content h2 {
+    font-size: 19px;
+  }
+
+  .destination-card-content p {
+    font-size: 16px;
   }
 }

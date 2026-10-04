@@ -3,53 +3,144 @@
   right: 25px;
   bottom: 25px;
   z-index: 999;
-  width: 65px;
-  height: 65px;
+  width: 68px;
+  height: 68px;
   border-radius: 50%;
   border: none;
   background: #092d5b;
   color: white;
-  box-shadow: 0 8px 25px rgba(0,0,0,.25);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
   cursor: pointer;
   font-size: 28px;
+  transition: 0.3s;
+}
+
+.chat-launcher:hover {
+  transform: scale(1.08);
 }
 
 .chat-launcher span {
   display: block;
   font-size: 10px;
   color: #e5b638;
+  font-weight: bold;
 }
+
+
+/* =========================
+   CHAT WINDOW
+========================= */
 
 .chat-window {
   position: fixed;
   right: 25px;
   bottom: 25px;
-  width: 350px;
-  height: 500px;
+  width: 370px;
+  height: 570px;
   background: white;
   border-radius: 18px;
-  box-shadow: 0 15px 50px rgba(0,0,0,.25);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
   z-index: 1000;
   overflow: hidden;
+
   display: flex;
   flex-direction: column;
+
+  animation: chatOpen 0.25s ease;
 }
+
+@keyframes chatOpen {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================
+   HEADER
+========================= */
 
 .chat-header {
   background: #092d5b;
   color: white;
-  padding: 17px;
+  padding: 15px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
-.chat-header button {
+.chat-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.chat-title strong {
+  font-size: 15px;
+}
+
+.chat-status {
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.chat-status.online {
+  color: #9cffb2;
+}
+
+.chat-status.offline {
+  color: #e8e8e8;
+}
+
+.chat-close {
   background: transparent;
   border: none;
   color: white;
-  font-size: 22px;
+  font-size: 26px;
   cursor: pointer;
+  line-height: 1;
 }
+
+
+/* =========================
+   QUICK HELP
+========================= */
+
+.quick-help {
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  border-bottom: 1px solid #ddd;
+  background: white;
+}
+
+.quick-help button {
+  border: 1px solid #d9aa34;
+  background: #fff;
+  color: #092d5b;
+  border-radius: 20px;
+  padding: 7px 10px;
+  cursor: pointer;
+  font-size: 11px;
+  transition: 0.2s;
+}
+
+.quick-help button:hover {
+  background: #d9aa34;
+  color: #111;
+}
+
+
+/* =========================
+   MESSAGES
+========================= */
 
 .chat-messages {
   flex: 1;
@@ -59,16 +150,20 @@
 }
 
 .message {
-  max-width: 80%;
+  max-width: 82%;
   padding: 10px 13px;
   margin-bottom: 10px;
   border-radius: 12px;
-  line-height: 1.4;
+  line-height: 1.5;
+  font-size: 14px;
+  white-space: pre-line;
+  word-wrap: break-word;
 }
 
 .bot-message {
   background: white;
   border: 1px solid #ddd;
+  color: #222;
 }
 
 .user-message {
@@ -77,9 +172,55 @@
   color: #111;
 }
 
+
+/* =========================
+   TYPING
+========================= */
+
+.typing {
+  display: flex;
+  gap: 4px;
+  width: fit-content;
+  padding: 12px 14px;
+}
+
+.typing span {
+  width: 6px;
+  height: 6px;
+  background: #777;
+  border-radius: 50%;
+  animation: typing 1s infinite;
+}
+
+.typing span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.typing span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes typing {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+  }
+
+  30% {
+    transform: translateY(-5px);
+  }
+}
+
+
+/* =========================
+   INPUT
+========================= */
+
 .chat-input {
   display: flex;
   border-top: 1px solid #ddd;
+  background: white;
 }
 
 .chat-input input {
@@ -87,6 +228,7 @@
   padding: 14px;
   border: none;
   outline: none;
+  font-size: 14px;
 }
 
 .chat-input button {
@@ -94,12 +236,35 @@
   border: none;
   background: #d9aa34;
   cursor: pointer;
+  font-size: 20px;
 }
 
-@media(max-width:500px) {
+.chat-input button:hover {
+  background: #c99b2c;
+}
+
+.chat-input button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 500px) {
+
   .chat-window {
     right: 10px;
     bottom: 10px;
     width: calc(100% - 20px);
+    height: 75vh;
   }
+
+  .chat-launcher {
+    right: 15px;
+    bottom: 15px;
+  }
+
 }

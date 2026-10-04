@@ -1,6 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import Chatbot from "./Chatbot";
+import Chatbot from "./Chatbot.tsx";
 import "./Home.css";
+
+// IAKA logo
+import logoImage from "./assets/iaka-logo.png";
 
 function Home() {
   const navigate = useNavigate();
@@ -9,48 +12,64 @@ function Home() {
     {
       name: "Maharashtra",
       place: "Mahabaleshwar",
-      emoji: "🌄"
+      image: "/mahabaleshwar.jpg",
     },
     {
       name: "Andhra Pradesh",
       place: "Araku Valley",
-      emoji: "🏔️"
+      image: "/araku.jpg",
     },
     {
       name: "Uttar Pradesh",
       place: "Varanasi",
-      emoji: "🛕"
+      image: "/varanasi.jpg",
     },
     {
       name: "Tamil Nadu",
       place: "Ooty",
-      emoji: "🌿"
+      image: "/ooty.jpg",
     },
     {
       name: "Rajasthan",
       place: "Jaipur",
-      emoji: "🏰"
-    }
+      image: "/jaipur.jpg",
+    },
   ];
 
   return (
     <div className="home-page">
 
-      {/* HEADER */}
+      {/* =========================================
+          HEADER
+      ========================================= */}
 
       <header className="main-header">
+
+        {/* LOGO */}
 
         <div
           className="logo"
           onClick={() => navigate("/home")}
         >
-          <span>🌍</span>
 
-          <div>
-            <strong>AKA</strong>
-            <small>Travels</small>
+          <img
+            src={logoImage}
+            alt="IAKA Travels Logo"
+            className="logo-image"
+          />
+
+          <div className="logo-text">
+
+            <strong>IAKA</strong>
+
+            <small>TRAVELS</small>
+
           </div>
+
         </div>
+
+
+        {/* NAVIGATION */}
 
         <nav>
 
@@ -90,14 +109,17 @@ function Home() {
 
       </header>
 
-      {/* HERO */}
+
+      {/* =========================================
+          HERO SECTION
+      ========================================= */}
 
       <section className="hero-section">
 
         <div className="hero-content">
 
           <p className="welcome">
-            WELCOME TO AKA TRAVELS
+            WELCOME TO IAKA TRAVELS
           </p>
 
           <h1>
@@ -107,11 +129,14 @@ function Home() {
           </h1>
 
           <p>
-            Discover India with AKA Travels.
+            Discover India with IAKA Travels.
             Explore destinations, hotels,
             restaurants, parks and unforgettable
             experiences.
           </p>
+
+
+          {/* HERO BUTTONS */}
 
           <div className="hero-buttons">
 
@@ -131,31 +156,58 @@ function Home() {
 
         </div>
 
-        {/* SEARCH */}
+
+        {/* =========================================
+            TRAVEL SEARCH
+        ========================================= */}
 
         <div className="travel-search">
 
-          <h3>✈️ Plan Your Journey</h3>
+          <h3>
+            ✈️ Plan Your Journey
+          </h3>
 
           <div className="search-grid">
 
-            <input placeholder="From" />
+            <input
+              type="text"
+              placeholder="From"
+            />
 
-            <input placeholder="Destination" />
+            <input
+              type="text"
+              placeholder="Destination"
+            />
 
             <input
               type="date"
             />
 
-            <select>
-              <option>Travel Type</option>
-              <option>Family</option>
-              <option>Couple</option>
-              <option>Solo</option>
-              <option>Friends</option>
+            <select defaultValue="">
+              <option value="" disabled>
+                Travel Type
+              </option>
+
+              <option value="family">
+                Family
+              </option>
+
+              <option value="couple">
+                Couple
+              </option>
+
+              <option value="solo">
+                Solo
+              </option>
+
+              <option value="friends">
+                Friends
+              </option>
+
             </select>
 
           </div>
+
 
           <button
             onClick={() => navigate("/destinations")}
@@ -167,47 +219,95 @@ function Home() {
 
       </section>
 
-      {/* FEATURES */}
+
+      {/* =========================================
+          FEATURES
+      ========================================= */}
 
       <section className="features">
 
-        <div>
+        <div className="feature-item">
+
           <span>✈️</span>
-          <strong>Best Prices</strong>
-          <small>Affordable travel plans</small>
+
+          <strong>
+            Best Prices
+          </strong>
+
+          <small>
+            Affordable travel plans
+          </small>
+
         </div>
 
-        <div>
+
+        <div className="feature-item">
+
           <span>🛡️</span>
-          <strong>Safe & Secure</strong>
-          <small>Trusted travel service</small>
+
+          <strong>
+            Safe & Secure
+          </strong>
+
+          <small>
+            Trusted travel service
+          </small>
+
         </div>
 
-        <div>
+
+        <div className="feature-item">
+
           <span>🎧</span>
-          <strong>24/7 Support</strong>
-          <small>Travel assistance</small>
+
+          <strong>
+            24/7 Support
+          </strong>
+
+          <small>
+            Travel assistance
+          </small>
+
         </div>
 
-        <div>
+
+        <div className="feature-item">
+
           <span>🌎</span>
-          <strong>Indian Destinations</strong>
-          <small>Explore amazing places</small>
+
+          <strong>
+            Indian Destinations
+          </strong>
+
+          <small>
+            Explore amazing places
+          </small>
+
         </div>
 
       </section>
 
-      {/* DESTINATIONS */}
+
+      {/* =========================================
+          POPULAR DESTINATIONS
+      ========================================= */}
 
       <section className="popular-section">
 
         <div className="section-title">
-          <p>POPULAR DESTINATIONS</p>
+
+          <p>
+            POPULAR DESTINATIONS
+          </p>
 
           <h2>
             Explore Top Destinations
           </h2>
+
         </div>
+
+
+        {/* DESTINATION CARDS */}
 
         <div className="destination-cards">
 
@@ -219,17 +319,35 @@ function Home() {
               onClick={() => navigate("/destinations")}
             >
 
-              <div className="destination-image">
-                {item.emoji}
+              {/* IMAGE */}
+
+              <div className="destination-image-box">
+
+                <img
+                  src={item.image}
+                  alt={item.place}
+                />
+
               </div>
 
-              <h3>{item.place}</h3>
 
-              <p>📍 {item.name}</p>
+              {/* INFORMATION */}
 
-              <span>
-                Explore →
-              </span>
+              <div className="destination-info">
+
+                <h3>
+                  {item.place}
+                </h3>
+
+                <p>
+                  📍 {item.name}
+                </p>
+
+                <span>
+                  Explore →
+                </span>
+
+              </div>
 
             </div>
 
@@ -239,13 +357,18 @@ function Home() {
 
       </section>
 
-      {/* PACKAGES */}
+
+      {/* =========================================
+          PACKAGE BANNER
+      ========================================= */}
 
       <section className="package-banner">
 
         <div>
 
-          <p>SPECIAL TRAVEL PACKAGES</p>
+          <p>
+            SPECIAL TRAVEL PACKAGES
+          </p>
 
           <h2>
             Travel More. Spend Smarter.
@@ -266,15 +389,23 @@ function Home() {
 
       </section>
 
-      {/* CHATBOT */}
+
+      {/* =========================================
+          CHATBOT
+      ========================================= */}
 
       <Chatbot />
 
-      {/* FOOTER */}
+
+      {/* =========================================
+          FOOTER
+      ========================================= */}
 
       <footer>
 
-        <h2>🌍 AKA Travels</h2>
+        <h2>
+          IAKA Travels
+        </h2>
 
         <p>
           Emotion is to Travel ❤️
@@ -287,7 +418,7 @@ function Home() {
         <hr />
 
         <p>
-          @AKA travels .in
+          @IAKA travels .in
         </p>
 
       </footer>
